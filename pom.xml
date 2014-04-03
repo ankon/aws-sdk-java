@@ -11,7 +11,7 @@
     <url>https://aws.amazon.com/sdkforjava</url>
 
     <scm>
-        <url>https://github.com/aws/aws-sdk-java.git</url>
+        <url>https://github.com/ankon/aws-sdk-java.git</url>
     </scm>
 
     <licenses>
