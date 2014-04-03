@@ -30,6 +30,7 @@ public interface AWSCredentialsProvider {
      * credentials are rotated.
      *
      * @return AWSCredentials which the caller can use to authorize an AWS request.
+     * @throws AmazonClientException if credentials cannot be provided at this moment
      */
     public AWSCredentials getCredentials();
 
