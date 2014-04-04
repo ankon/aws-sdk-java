@@ -51,7 +51,7 @@ public class ProfilesConfigFileParser {
                     "Unable to load AWS profiles: specified file is null.");
         }
 
-        if (!file.exists() || !file.isFile()) {
+        if (!file.isFile()) {
             throw new IllegalArgumentException(
                     "AWS profiles config file not found in the given path: "
                             + file.getAbsolutePath());
