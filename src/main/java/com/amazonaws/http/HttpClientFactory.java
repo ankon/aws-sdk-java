@@ -44,6 +44,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.protocol.ClientContext;
 import org.apache.http.conn.ConnectTimeoutException;
 import org.apache.http.conn.params.ConnRoutePNames;
+import org.apache.http.conn.params.ConnRouteParams;
 import org.apache.http.conn.scheme.PlainSocketFactory;
 import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeLayeredSocketFactory;
@@ -98,6 +99,10 @@ class HttpClientFactory {
         SdkHttpClient httpClient = new SdkHttpClient(connectionManager, httpClientParams);
         httpClient.setHttpRequestRetryHandler(HttpRequestNoRetryHandler.Singleton);
         httpClient.setRedirectStrategy(new LocationHeaderNotRequiredRedirectStrategy());
+
+        if (config.getLocalAddress() != null) {
+            ConnRouteParams.setLocalAddress(httpClientParams, config.getLocalAddress());
+        }
 
         try {
             Scheme http = new Scheme("http", 80, PlainSocketFactory.getSocketFactory());
@@ -271,7 +276,7 @@ class HttpClientFactory {
                 authCache.put(this.proxyHost, basicScheme);
                 context.setAttribute(ClientContext.AUTH_CACHE, authCache);
             } else {
-                authCache = 
+                authCache =
                     (AuthCache) context.getAttribute(ClientContext.AUTH_CACHE);
                 authCache.put(this.proxyHost, basicScheme);
             }

@@ -21,6 +21,7 @@ import java.util.Map;
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.DefaultRequest;
+import com.amazonaws.internal.ListWithAutoConstructFlag;
 import com.amazonaws.services.elasticache.model.*;
 import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.StringUtils;
@@ -38,7 +39,7 @@ public class CreateCacheClusterRequestMarshaller implements Marshaller<Request<C
 
         Request<CreateCacheClusterRequest> request = new DefaultRequest<CreateCacheClusterRequest>(createCacheClusterRequest, "AmazonElastiCache");
         request.addParameter("Action", "CreateCacheCluster");
-        request.addParameter("Version", "2013-06-15");
+        request.addParameter("Version", "2014-03-24");
 
         if (createCacheClusterRequest.getCacheClusterId() != null) {
             request.addParameter("CacheClusterId", StringUtils.fromString(createCacheClusterRequest.getCacheClusterId()));
@@ -97,6 +98,9 @@ public class CreateCacheClusterRequestMarshaller implements Marshaller<Request<C
 
             snapshotArnsListIndex++;
         }
+        if (createCacheClusterRequest.getSnapshotName() != null) {
+            request.addParameter("SnapshotName", StringUtils.fromString(createCacheClusterRequest.getSnapshotName()));
+        }
         if (createCacheClusterRequest.getPreferredAvailabilityZone() != null) {
             request.addParameter("PreferredAvailabilityZone", StringUtils.fromString(createCacheClusterRequest.getPreferredAvailabilityZone()));
         }
@@ -111,6 +115,12 @@ public class CreateCacheClusterRequestMarshaller implements Marshaller<Request<C
         }
         if (createCacheClusterRequest.isAutoMinorVersionUpgrade() != null) {
             request.addParameter("AutoMinorVersionUpgrade", StringUtils.fromBoolean(createCacheClusterRequest.isAutoMinorVersionUpgrade()));
+        }
+        if (createCacheClusterRequest.getSnapshotRetentionLimit() != null) {
+            request.addParameter("SnapshotRetentionLimit", StringUtils.fromInteger(createCacheClusterRequest.getSnapshotRetentionLimit()));
+        }
+        if (createCacheClusterRequest.getSnapshotWindow() != null) {
+            request.addParameter("SnapshotWindow", StringUtils.fromString(createCacheClusterRequest.getSnapshotWindow()));
         }
 
         return request;

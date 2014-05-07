@@ -37,7 +37,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      */
     private String launchConfigurationName;
 
@@ -51,7 +51,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      */
     private String imageId;
 
@@ -62,7 +62,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      */
     private String keyName;
 
@@ -91,7 +91,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 21847<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      */
     private String userData;
 
@@ -113,7 +113,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 16<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      */
     private String instanceId;
 
@@ -126,7 +126,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      */
     private String instanceType;
 
@@ -135,7 +135,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      */
     private String kernelId;
 
@@ -144,7 +144,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      */
     private String ramdiskId;
 
@@ -202,7 +202,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      */
     private String iamInstanceProfile;
 
@@ -226,21 +226,36 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>If you specify a value for this parameter, be sure to specify at
      * least one VPC subnet using the <i>VPCZoneIdentifier</i> parameter when
      * you create your Auto Scaling group. </note> <p>Default: If the
-     * instance is launched in default VPC, the default is <code>true</code>.
-     * If the instance is launched in a nondefault VPC (EC2-VPC), the default
-     * is <code>false</code>. For more information about the platforms
-     * supported by Auto Scaling, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_BasicSetup.html">Basic
-     * Auto Scaling Configuration</a>.
+     * instance is launched into a default subnet in a default VPC, the
+     * default is <code>true</code>. If the instance is launched into a
+     * nondefault subnet in a VPC, the default is <code>false</code>. For
+     * information about the platforms supported by Auto Scaling, see <a
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_BasicSetup.html">Get
+     * Started with Auto Scaling Using the Command Line Interface</a>.
      */
     private Boolean associatePublicIpAddress;
+
+    /**
+     * The tenancy of the instance. An instance with a tenancy of
+     * <code>dedicated</code> runs on single-tenant hardware and can only be
+     * launched into a VPC. <p>For more information, see <a
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/autoscalingsubnets.html">Auto
+     * Scaling in Amazon Virtual Private Cloud</a> in the <i>Auto Scaling
+     * Developer Guide</i>. <p>Valid values: <code>default</code> |
+     * <code>dedicated</code>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     */
+    private String placementTenancy;
 
     /**
      * The name of the launch configuration to create.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @return The name of the launch configuration to create.
      */
@@ -253,7 +268,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param launchConfigurationName The name of the launch configuration to create.
      */
@@ -268,7 +283,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param launchConfigurationName The name of the launch configuration to create.
      *
@@ -290,7 +305,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @return Unique ID of the Amazon Machine Image (AMI) you want to use to launch
      *         your EC2 instances. For information about finding Amazon EC2 AMIs, see
@@ -313,7 +328,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param imageId Unique ID of the Amazon Machine Image (AMI) you want to use to launch
      *         your EC2 instances. For information about finding Amazon EC2 AMIs, see
@@ -338,7 +353,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param imageId Unique ID of the Amazon Machine Image (AMI) you want to use to launch
      *         your EC2 instances. For information about finding Amazon EC2 AMIs, see
@@ -362,7 +377,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @return The name of the Amazon EC2 key pair. For more information, see <a
      *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/generating-a-keypair.html">Getting
@@ -379,7 +394,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param keyName The name of the Amazon EC2 key pair. For more information, see <a
      *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/generating-a-keypair.html">Getting
@@ -398,7 +413,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param keyName The name of the Amazon EC2 key pair. For more information, see <a
      *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/generating-a-keypair.html">Getting
@@ -570,7 +585,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 21847<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @return The user data to make available to the launched Amazon EC2 instances.
      *         For more information about Amazon EC2 user data, see <a
@@ -593,7 +608,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 21847<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param userData The user data to make available to the launched Amazon EC2 instances.
      *         For more information about Amazon EC2 user data, see <a
@@ -618,7 +633,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 21847<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param userData The user data to make available to the launched Amazon EC2 instances.
      *         For more information about Amazon EC2 user data, see <a
@@ -653,7 +668,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 16<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @return The ID of the Amazon EC2 instance you want to use to create the launch
      *         configuration. Use this attribute if you want the launch configuration
@@ -692,7 +707,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 16<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param instanceId The ID of the Amazon EC2 instance you want to use to create the launch
      *         configuration. Use this attribute if you want the launch configuration
@@ -733,7 +748,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 16<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param instanceId The ID of the Amazon EC2 instance you want to use to create the launch
      *         configuration. Use this attribute if you want the launch configuration
@@ -767,7 +782,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @return The instance type of the Amazon EC2 instance. For information about
      *         available Amazon EC2 instance types, see <a
@@ -788,7 +803,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param instanceType The instance type of the Amazon EC2 instance. For information about
      *         available Amazon EC2 instance types, see <a
@@ -811,7 +826,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param instanceType The instance type of the Amazon EC2 instance. For information about
      *         available Amazon EC2 instance types, see <a
@@ -832,7 +847,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @return The ID of the kernel associated with the Amazon EC2 AMI.
      */
@@ -845,7 +860,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param kernelId The ID of the kernel associated with the Amazon EC2 AMI.
      */
@@ -860,7 +875,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param kernelId The ID of the kernel associated with the Amazon EC2 AMI.
      *
@@ -877,7 +892,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @return The ID of the RAM disk associated with the Amazon EC2 AMI.
      */
@@ -890,7 +905,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param ramdiskId The ID of the RAM disk associated with the Amazon EC2 AMI.
      */
@@ -905,7 +920,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param ramdiskId The ID of the RAM disk associated with the Amazon EC2 AMI.
      *
@@ -1218,7 +1233,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @return The name or the Amazon Resource Name (ARN) of the instance profile
      *         associated with the IAM role for the instance. <p>Amazon EC2 instances
@@ -1249,7 +1264,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param iamInstanceProfile The name or the Amazon Resource Name (ARN) of the instance profile
      *         associated with the IAM role for the instance. <p>Amazon EC2 instances
@@ -1282,7 +1297,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param iamInstanceProfile The name or the Amazon Resource Name (ARN) of the instance profile
      *         associated with the IAM role for the instance. <p>Amazon EC2 instances
@@ -1416,12 +1431,12 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>If you specify a value for this parameter, be sure to specify at
      * least one VPC subnet using the <i>VPCZoneIdentifier</i> parameter when
      * you create your Auto Scaling group. </note> <p>Default: If the
-     * instance is launched in default VPC, the default is <code>true</code>.
-     * If the instance is launched in a nondefault VPC (EC2-VPC), the default
-     * is <code>false</code>. For more information about the platforms
-     * supported by Auto Scaling, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_BasicSetup.html">Basic
-     * Auto Scaling Configuration</a>.
+     * instance is launched into a default subnet in a default VPC, the
+     * default is <code>true</code>. If the instance is launched into a
+     * nondefault subnet in a VPC, the default is <code>false</code>. For
+     * information about the platforms supported by Auto Scaling, see <a
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_BasicSetup.html">Get
+     * Started with Auto Scaling Using the Command Line Interface</a>.
      *
      * @return Used for Auto Scaling groups that launch instances into an Amazon
      *         Virtual Private Cloud (Amazon VPC). Specifies whether to assign a
@@ -1429,12 +1444,12 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      *         <p>If you specify a value for this parameter, be sure to specify at
      *         least one VPC subnet using the <i>VPCZoneIdentifier</i> parameter when
      *         you create your Auto Scaling group. </note> <p>Default: If the
-     *         instance is launched in default VPC, the default is <code>true</code>.
-     *         If the instance is launched in a nondefault VPC (EC2-VPC), the default
-     *         is <code>false</code>. For more information about the platforms
-     *         supported by Auto Scaling, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_BasicSetup.html">Basic
-     *         Auto Scaling Configuration</a>.
+     *         instance is launched into a default subnet in a default VPC, the
+     *         default is <code>true</code>. If the instance is launched into a
+     *         nondefault subnet in a VPC, the default is <code>false</code>. For
+     *         information about the platforms supported by Auto Scaling, see <a
+     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_BasicSetup.html">Get
+     *         Started with Auto Scaling Using the Command Line Interface</a>.
      */
     public Boolean isAssociatePublicIpAddress() {
         return associatePublicIpAddress;
@@ -1447,12 +1462,12 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>If you specify a value for this parameter, be sure to specify at
      * least one VPC subnet using the <i>VPCZoneIdentifier</i> parameter when
      * you create your Auto Scaling group. </note> <p>Default: If the
-     * instance is launched in default VPC, the default is <code>true</code>.
-     * If the instance is launched in a nondefault VPC (EC2-VPC), the default
-     * is <code>false</code>. For more information about the platforms
-     * supported by Auto Scaling, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_BasicSetup.html">Basic
-     * Auto Scaling Configuration</a>.
+     * instance is launched into a default subnet in a default VPC, the
+     * default is <code>true</code>. If the instance is launched into a
+     * nondefault subnet in a VPC, the default is <code>false</code>. For
+     * information about the platforms supported by Auto Scaling, see <a
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_BasicSetup.html">Get
+     * Started with Auto Scaling Using the Command Line Interface</a>.
      *
      * @param associatePublicIpAddress Used for Auto Scaling groups that launch instances into an Amazon
      *         Virtual Private Cloud (Amazon VPC). Specifies whether to assign a
@@ -1460,12 +1475,12 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      *         <p>If you specify a value for this parameter, be sure to specify at
      *         least one VPC subnet using the <i>VPCZoneIdentifier</i> parameter when
      *         you create your Auto Scaling group. </note> <p>Default: If the
-     *         instance is launched in default VPC, the default is <code>true</code>.
-     *         If the instance is launched in a nondefault VPC (EC2-VPC), the default
-     *         is <code>false</code>. For more information about the platforms
-     *         supported by Auto Scaling, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_BasicSetup.html">Basic
-     *         Auto Scaling Configuration</a>.
+     *         instance is launched into a default subnet in a default VPC, the
+     *         default is <code>true</code>. If the instance is launched into a
+     *         nondefault subnet in a VPC, the default is <code>false</code>. For
+     *         information about the platforms supported by Auto Scaling, see <a
+     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_BasicSetup.html">Get
+     *         Started with Auto Scaling Using the Command Line Interface</a>.
      */
     public void setAssociatePublicIpAddress(Boolean associatePublicIpAddress) {
         this.associatePublicIpAddress = associatePublicIpAddress;
@@ -1478,12 +1493,12 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>If you specify a value for this parameter, be sure to specify at
      * least one VPC subnet using the <i>VPCZoneIdentifier</i> parameter when
      * you create your Auto Scaling group. </note> <p>Default: If the
-     * instance is launched in default VPC, the default is <code>true</code>.
-     * If the instance is launched in a nondefault VPC (EC2-VPC), the default
-     * is <code>false</code>. For more information about the platforms
-     * supported by Auto Scaling, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_BasicSetup.html">Basic
-     * Auto Scaling Configuration</a>.
+     * instance is launched into a default subnet in a default VPC, the
+     * default is <code>true</code>. If the instance is launched into a
+     * nondefault subnet in a VPC, the default is <code>false</code>. For
+     * information about the platforms supported by Auto Scaling, see <a
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_BasicSetup.html">Get
+     * Started with Auto Scaling Using the Command Line Interface</a>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
@@ -1493,12 +1508,12 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      *         <p>If you specify a value for this parameter, be sure to specify at
      *         least one VPC subnet using the <i>VPCZoneIdentifier</i> parameter when
      *         you create your Auto Scaling group. </note> <p>Default: If the
-     *         instance is launched in default VPC, the default is <code>true</code>.
-     *         If the instance is launched in a nondefault VPC (EC2-VPC), the default
-     *         is <code>false</code>. For more information about the platforms
-     *         supported by Auto Scaling, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_BasicSetup.html">Basic
-     *         Auto Scaling Configuration</a>.
+     *         instance is launched into a default subnet in a default VPC, the
+     *         default is <code>true</code>. If the instance is launched into a
+     *         nondefault subnet in a VPC, the default is <code>false</code>. For
+     *         information about the platforms supported by Auto Scaling, see <a
+     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_BasicSetup.html">Get
+     *         Started with Auto Scaling Using the Command Line Interface</a>.
      *
      * @return A reference to this updated object so that method calls can be chained 
      *         together.
@@ -1515,12 +1530,12 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * <p>If you specify a value for this parameter, be sure to specify at
      * least one VPC subnet using the <i>VPCZoneIdentifier</i> parameter when
      * you create your Auto Scaling group. </note> <p>Default: If the
-     * instance is launched in default VPC, the default is <code>true</code>.
-     * If the instance is launched in a nondefault VPC (EC2-VPC), the default
-     * is <code>false</code>. For more information about the platforms
-     * supported by Auto Scaling, see <a
-     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_BasicSetup.html">Basic
-     * Auto Scaling Configuration</a>.
+     * instance is launched into a default subnet in a default VPC, the
+     * default is <code>true</code>. If the instance is launched into a
+     * nondefault subnet in a VPC, the default is <code>false</code>. For
+     * information about the platforms supported by Auto Scaling, see <a
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_BasicSetup.html">Get
+     * Started with Auto Scaling Using the Command Line Interface</a>.
      *
      * @return Used for Auto Scaling groups that launch instances into an Amazon
      *         Virtual Private Cloud (Amazon VPC). Specifies whether to assign a
@@ -1528,15 +1543,96 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      *         <p>If you specify a value for this parameter, be sure to specify at
      *         least one VPC subnet using the <i>VPCZoneIdentifier</i> parameter when
      *         you create your Auto Scaling group. </note> <p>Default: If the
-     *         instance is launched in default VPC, the default is <code>true</code>.
-     *         If the instance is launched in a nondefault VPC (EC2-VPC), the default
-     *         is <code>false</code>. For more information about the platforms
-     *         supported by Auto Scaling, see <a
-     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_BasicSetup.html">Basic
-     *         Auto Scaling Configuration</a>.
+     *         instance is launched into a default subnet in a default VPC, the
+     *         default is <code>true</code>. If the instance is launched into a
+     *         nondefault subnet in a VPC, the default is <code>false</code>. For
+     *         information about the platforms supported by Auto Scaling, see <a
+     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_BasicSetup.html">Get
+     *         Started with Auto Scaling Using the Command Line Interface</a>.
      */
     public Boolean getAssociatePublicIpAddress() {
         return associatePublicIpAddress;
+    }
+
+    /**
+     * The tenancy of the instance. An instance with a tenancy of
+     * <code>dedicated</code> runs on single-tenant hardware and can only be
+     * launched into a VPC. <p>For more information, see <a
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/autoscalingsubnets.html">Auto
+     * Scaling in Amazon Virtual Private Cloud</a> in the <i>Auto Scaling
+     * Developer Guide</i>. <p>Valid values: <code>default</code> |
+     * <code>dedicated</code>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     *
+     * @return The tenancy of the instance. An instance with a tenancy of
+     *         <code>dedicated</code> runs on single-tenant hardware and can only be
+     *         launched into a VPC. <p>For more information, see <a
+     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/autoscalingsubnets.html">Auto
+     *         Scaling in Amazon Virtual Private Cloud</a> in the <i>Auto Scaling
+     *         Developer Guide</i>. <p>Valid values: <code>default</code> |
+     *         <code>dedicated</code>
+     */
+    public String getPlacementTenancy() {
+        return placementTenancy;
+    }
+    
+    /**
+     * The tenancy of the instance. An instance with a tenancy of
+     * <code>dedicated</code> runs on single-tenant hardware and can only be
+     * launched into a VPC. <p>For more information, see <a
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/autoscalingsubnets.html">Auto
+     * Scaling in Amazon Virtual Private Cloud</a> in the <i>Auto Scaling
+     * Developer Guide</i>. <p>Valid values: <code>default</code> |
+     * <code>dedicated</code>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     *
+     * @param placementTenancy The tenancy of the instance. An instance with a tenancy of
+     *         <code>dedicated</code> runs on single-tenant hardware and can only be
+     *         launched into a VPC. <p>For more information, see <a
+     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/autoscalingsubnets.html">Auto
+     *         Scaling in Amazon Virtual Private Cloud</a> in the <i>Auto Scaling
+     *         Developer Guide</i>. <p>Valid values: <code>default</code> |
+     *         <code>dedicated</code>
+     */
+    public void setPlacementTenancy(String placementTenancy) {
+        this.placementTenancy = placementTenancy;
+    }
+    
+    /**
+     * The tenancy of the instance. An instance with a tenancy of
+     * <code>dedicated</code> runs on single-tenant hardware and can only be
+     * launched into a VPC. <p>For more information, see <a
+     * href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/autoscalingsubnets.html">Auto
+     * Scaling in Amazon Virtual Private Cloud</a> in the <i>Auto Scaling
+     * Developer Guide</i>. <p>Valid values: <code>default</code> |
+     * <code>dedicated</code>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
+     *
+     * @param placementTenancy The tenancy of the instance. An instance with a tenancy of
+     *         <code>dedicated</code> runs on single-tenant hardware and can only be
+     *         launched into a VPC. <p>For more information, see <a
+     *         href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/autoscalingsubnets.html">Auto
+     *         Scaling in Amazon Virtual Private Cloud</a> in the <i>Auto Scaling
+     *         Developer Guide</i>. <p>Valid values: <code>default</code> |
+     *         <code>dedicated</code>
+     *
+     * @return A reference to this updated object so that method calls can be chained 
+     *         together.
+     */
+    public CreateLaunchConfigurationRequest withPlacementTenancy(String placementTenancy) {
+        this.placementTenancy = placementTenancy;
+        return this;
     }
 
     /**
@@ -1565,7 +1661,8 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
         if (getSpotPrice() != null) sb.append("SpotPrice: " + getSpotPrice() + ",");
         if (getIamInstanceProfile() != null) sb.append("IamInstanceProfile: " + getIamInstanceProfile() + ",");
         if (isEbsOptimized() != null) sb.append("EbsOptimized: " + isEbsOptimized() + ",");
-        if (isAssociatePublicIpAddress() != null) sb.append("AssociatePublicIpAddress: " + isAssociatePublicIpAddress() );
+        if (isAssociatePublicIpAddress() != null) sb.append("AssociatePublicIpAddress: " + isAssociatePublicIpAddress() + ",");
+        if (getPlacementTenancy() != null) sb.append("PlacementTenancy: " + getPlacementTenancy() );
         sb.append("}");
         return sb.toString();
     }
@@ -1590,6 +1687,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
         hashCode = prime * hashCode + ((getIamInstanceProfile() == null) ? 0 : getIamInstanceProfile().hashCode()); 
         hashCode = prime * hashCode + ((isEbsOptimized() == null) ? 0 : isEbsOptimized().hashCode()); 
         hashCode = prime * hashCode + ((isAssociatePublicIpAddress() == null) ? 0 : isAssociatePublicIpAddress().hashCode()); 
+        hashCode = prime * hashCode + ((getPlacementTenancy() == null) ? 0 : getPlacementTenancy().hashCode()); 
         return hashCode;
     }
     
@@ -1631,6 +1729,8 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
         if (other.isEbsOptimized() != null && other.isEbsOptimized().equals(this.isEbsOptimized()) == false) return false; 
         if (other.isAssociatePublicIpAddress() == null ^ this.isAssociatePublicIpAddress() == null) return false;
         if (other.isAssociatePublicIpAddress() != null && other.isAssociatePublicIpAddress().equals(this.isAssociatePublicIpAddress()) == false) return false; 
+        if (other.getPlacementTenancy() == null ^ this.getPlacementTenancy() == null) return false;
+        if (other.getPlacementTenancy() != null && other.getPlacementTenancy().equals(this.getPlacementTenancy()) == false) return false; 
         return true;
     }
     

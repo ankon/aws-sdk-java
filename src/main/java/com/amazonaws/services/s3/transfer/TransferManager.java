@@ -22,11 +22,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.commons.logging.Log;
@@ -101,7 +101,7 @@ import com.amazonaws.util.VersionInfoUtils;
  * <p>
  * Using <code>TransferManager</code> to upload options to Amazon S3 is easy:
  *
- * <pre>
+ * <pre class="brush: java">
  * DefaultAWSCredentialsProviderChain credentialProviderChain = new DefaultAWSCredentialsProviderChain();
  * TransferManager tx = new TransferManager(
  * 		credentialProviderChain.getCredentials());
@@ -140,7 +140,7 @@ public class TransferManager {
     /** Configuration for how TransferManager processes requests. */
     private TransferManagerConfiguration configuration;
     /** The thread pool in which transfers are uploaded or downloaded. */
-    private ThreadPoolExecutor threadPool;
+    private ExecutorService threadPool;
 
     /** Thread used for periodicially checking transfers and updating thier state. */
     private ScheduledExecutorService timedThreadPool = new ScheduledThreadPoolExecutor(1, daemonThreadFactory);
@@ -235,7 +235,7 @@ public class TransferManager {
      * @param threadPool
      *            The thread pool in which to execute requests.
      */
-    public TransferManager(AmazonS3 s3, ThreadPoolExecutor threadPool) {
+    public TransferManager(AmazonS3 s3, ExecutorService threadPool) {
         this.s3 = s3;
         this.threadPool = threadPool;
         this.configuration = new TransferManagerConfiguration();
@@ -773,12 +773,12 @@ public class TransferManager {
     private static final class MultipleFileTransferStateChangeListener implements TransferStateChangeListener {
 
         private final AllDownloadsQueuedLock allTransfersQueuedLock;
-        private final MultipleFileTransfer multipleFileTransfer;
+        private final MultipleFileTransfer<?> multipleFileTransfer;
 
         public MultipleFileTransferStateChangeListener(AllDownloadsQueuedLock allTransfersQueuedLock,
-                MultipleFileTransfer multipleFileDownload) {
+                MultipleFileTransfer<?> multipleFileTransfer) {
             this.allTransfersQueuedLock = allTransfersQueuedLock;
-            this.multipleFileTransfer = multipleFileDownload;
+            this.multipleFileTransfer = multipleFileTransfer;
         }
 
         @Override
@@ -1316,7 +1316,7 @@ public class TransferManager {
         CopyImpl copy = new CopyImpl(description, transferProgress,
                 listenerChain, stateChangeListener);
         CopyCallable copyCallable = new CopyCallable(this, threadPool, copy,
-                copyObjectRequest, metadata.getContentLength(), listenerChain);
+                copyObjectRequest, metadata, listenerChain);
         CopyMonitor watcher = new CopyMonitor(this, copy, threadPool,
                 copyCallable, copyObjectRequest, listenerChain);
         watcher.setTimedThreadPool(timedThreadPool);

@@ -14,6 +14,9 @@
  */
 package com.amazonaws.services.s3;
 
+import static com.amazonaws.util.LengthCheckInputStream.EXCLUDE_SKIPPED_BYTES;
+import static com.amazonaws.util.LengthCheckInputStream.INCLUDE_SKIPPED_BYTES;
+
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -61,6 +64,7 @@ import com.amazonaws.auth.Presigner;
 import com.amazonaws.auth.Signer;
 import com.amazonaws.auth.SignerFactory;
 import com.amazonaws.auth.SystemPropertiesCredentialsProvider;
+import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.event.ProgressEvent;
 import com.amazonaws.event.ProgressListener;
 import com.amazonaws.event.ProgressListenerCallbackExecutor;
@@ -137,6 +141,7 @@ import com.amazonaws.services.s3.model.GetBucketPolicyRequest;
 import com.amazonaws.services.s3.model.GetBucketWebsiteConfigurationRequest;
 import com.amazonaws.services.s3.model.GetObjectMetadataRequest;
 import com.amazonaws.services.s3.model.GetObjectRequest;
+import com.amazonaws.services.s3.model.GetRequestPaymentConfigurationRequest;
 import com.amazonaws.services.s3.model.Grant;
 import com.amazonaws.services.s3.model.Grantee;
 import com.amazonaws.services.s3.model.GroupGrantee;
@@ -159,6 +164,8 @@ import com.amazonaws.services.s3.model.Permission;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectResult;
 import com.amazonaws.services.s3.model.Region;
+import com.amazonaws.services.s3.model.RequestPaymentConfiguration;
+import com.amazonaws.services.s3.model.RequestPaymentConfiguration.Payer;
 import com.amazonaws.services.s3.model.ResponseHeaderOverrides;
 import com.amazonaws.services.s3.model.RestoreObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
@@ -172,6 +179,7 @@ import com.amazonaws.services.s3.model.SetBucketPolicyRequest;
 import com.amazonaws.services.s3.model.SetBucketTaggingConfigurationRequest;
 import com.amazonaws.services.s3.model.SetBucketVersioningConfigurationRequest;
 import com.amazonaws.services.s3.model.SetBucketWebsiteConfigurationRequest;
+import com.amazonaws.services.s3.model.SetRequestPaymentConfigurationRequest;
 import com.amazonaws.services.s3.model.StorageClass;
 import com.amazonaws.services.s3.model.UploadPartRequest;
 import com.amazonaws.services.s3.model.UploadPartResult;
@@ -179,6 +187,7 @@ import com.amazonaws.services.s3.model.VersionListing;
 import com.amazonaws.services.s3.model.transform.AclXmlFactory;
 import com.amazonaws.services.s3.model.transform.BucketConfigurationXmlFactory;
 import com.amazonaws.services.s3.model.transform.MultiObjectDeleteXmlFactory;
+import com.amazonaws.services.s3.model.transform.RequestPaymentConfigurationXmlFactory;
 import com.amazonaws.services.s3.model.transform.RequestXmlFactory;
 import com.amazonaws.services.s3.model.transform.Unmarshallers;
 import com.amazonaws.services.s3.model.transform.XmlResponsesSaxParser.CompleteMultipartUploadHandler;
@@ -187,9 +196,9 @@ import com.amazonaws.transform.Unmarshaller;
 import com.amazonaws.util.AWSRequestMetrics;
 import com.amazonaws.util.AWSRequestMetrics.Field;
 import com.amazonaws.util.BinaryUtils;
-import com.amazonaws.util.ContentLengthValidationInputStream;
 import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.HttpUtils;
+import com.amazonaws.util.LengthCheckInputStream;
 import com.amazonaws.util.Md5Utils;
 import com.amazonaws.util.ServiceClientHolderInputStream;
 
@@ -244,6 +253,9 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     /** Shared factory for converting configuration objects to XML */
     private static final BucketConfigurationXmlFactory bucketConfigurationXmlFactory = new BucketConfigurationXmlFactory();
 
+    /** Shared factory for converting request payment configuration objects to XML */
+    private static final RequestPaymentConfigurationXmlFactory requestPaymentConfigurationXmlFactory = new RequestPaymentConfigurationXmlFactory();
+
     /** S3 specific client configuration options */
     private S3ClientOptions clientOptions = new S3ClientOptions();
 
@@ -260,6 +272,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      * <ul>
      * <li>Environment Variables - AWS_ACCESS_KEY_ID and AWS_SECRET_KEY</li>
      * <li>Java System Properties - aws.accessKeyId and aws.secretKey</li>
+     * <li>Credential profiles file at the default location (~/.aws/credentials) shared by all AWS SDKs and the AWS CLI</li>
      * <li>Instance Profile Credentials - delivered through the Amazon EC2
      * metadata service</li>
      * </ul>
@@ -295,6 +308,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         this(new AWSCredentialsProviderChain(
                 new EnvironmentVariableCredentialsProvider(),
                 new SystemPropertiesCredentialsProvider(),
+                new ProfileCredentialsProvider(),
                 new InstanceProfileCredentialsProvider()) {
 
             public AWSCredentials getCredentials() {
@@ -1087,6 +1101,11 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             request.addHeader(Headers.RANGE, "bytes=" + Long.toString(range[0]) + "-" + Long.toString(range[1]));
         }
 
+        if (getObjectRequest.isRequesterPays()) {
+            request.addHeader(Headers.REQUESTER_PAYS_HEADER,
+                    Constants.REQUESTER_PAYS);
+        }
+
         addResponseHeaderParameters(request, getObjectRequest.getResponseHeaders());
 
         addDateHeader(request, Headers.GET_OBJECT_IF_MODIFIED_SINCE,
@@ -1129,7 +1148,9 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             // If someone is interested in progress updates, wrap the input
             // stream in a filter that will trigger progress reports.
             if (progressListenerCallbackExecutor != null) {
-                ProgressReportingInputStream progressReportingInputStream = new ProgressReportingInputStream(input, progressListenerCallbackExecutor);
+                @SuppressWarnings("resource")
+                ProgressReportingInputStream progressReportingInputStream = new ProgressReportingInputStream(
+                        input, progressListenerCallbackExecutor);
                 progressReportingInputStream.setFireCompletedEvent(true);
                 input = progressReportingInputStream;
                 fireProgressEvent(progressListenerCallbackExecutor, ProgressEvent.STARTED_EVENT_CODE);
@@ -1139,12 +1160,16 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             // we're downloading the whole object, by default we wrap the
             // stream in a validator that calculates an MD5 of the downloaded
             // bytes and complains if what we received doesn't match the Etag.
-            if (getObjectRequest.getRange() == null && System.getProperty("com.amazonaws.services.s3.disableGetObjectMD5Validation") == null) {
+            if (getObjectRequest.getRange() == null
+            &&  System.getProperty("com.amazonaws.services.s3.disableGetObjectMD5Validation") == null) {
                 byte[] serverSideHash = null;
                 String etag = s3Object.getObjectMetadata().getETag();
                 if (etag != null && ServiceUtils.isMultipartUploadETag(etag) == false) {
                     serverSideHash = BinaryUtils.fromHex(s3Object.getObjectMetadata().getETag());
                     try {
+                        // No content length check is performed when the
+                        // MD5 check is enabled, since a correct MD5 check would
+                        // imply a correct content length.
                         MessageDigest digest = MessageDigest.getInstance("MD5");
                         input = new DigestValidationInputStream(input, digest, serverSideHash);
                     } catch (NoSuchAlgorithmException e) {
@@ -1153,7 +1178,11 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                     }
                 }
             } else {
-                input = new ContentLengthValidationInputStream(input, s3Object.getObjectMetadata().getContentLength());
+                // Ensures the data received from S3 has the same length as the
+                // expected content-length
+                input = new LengthCheckInputStream(input,
+                    s3Object.getObjectMetadata().getContentLength(), // expected length
+                    INCLUDE_SKIPPED_BYTES); // bytes received from S3 are all included even if skipped
             }
 
             // Re-wrap within an S3ObjectInputStream. Explicitly do not collect
@@ -1280,7 +1309,6 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         // information from it to auto-configure a few options
         if (putObjectRequest.getFile() != null) {
             File file = putObjectRequest.getFile();
-
             // Always set the content length, even if it's already set
             metadata.setContentLength(file.length());
 
@@ -1328,7 +1356,8 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         }
 
         // Use internal interface to differentiate 0 from unset.
-        if (metadata.getRawMetadata().get(Headers.CONTENT_LENGTH) == null) {
+        final Long contentLength = (Long)metadata.getRawMetadataValue(Headers.CONTENT_LENGTH);
+        if (contentLength == null) {
             /*
              * There's nothing we can do except for let the HTTP client buffer
              * the input stream contents if the caller doesn't tell us how much
@@ -1339,6 +1368,21 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             log.warn("No content length specified for stream data.  " +
                      "Stream contents will be buffered in memory and could result in " +
                      "out of memory errors.");
+        } else {
+            final long expectedLength = contentLength.longValue();
+            if (expectedLength >= 0) {
+                // Performs length check on the underlying data stream.
+                // For S3 encryption client, the underlying data stream here
+                // refers to the cipher-text data stream (ie not the underlying
+                // plain-text data stream which in turn may have been wrapped
+                // with it's own length check input stream.)
+                @SuppressWarnings("resource")
+                LengthCheckInputStream lcis = new LengthCheckInputStream(
+                    input,
+                    expectedLength, // expected data length to be uploaded
+                    EXCLUDE_SKIPPED_BYTES);
+                input = lcis;
+            }
         }
 
         if (progressListenerCallbackExecutor != null) {
@@ -1492,12 +1536,11 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
         populateRequestWithCopyObjectParameters(request, copyObjectRequest);
         /*
-         * We can't send the Content-Length header if the user specified it,
-         * otherwise it messes up the HTTP connection when the remote server
-         * thinks there's more data to pull.
+         * We can't send a non-zero length Content-Length header if the user
+         * specified it, otherwise it messes up the HTTP connection when the
+         * remote server thinks there's more data to pull.
          */
-        request.getHeaders().remove(Headers.CONTENT_LENGTH);
-
+        setZeroContentLength(request);
         CopyObjectResultHandler copyObjectResultHandler = null;
         try {
             @SuppressWarnings("unchecked")
@@ -1623,12 +1666,11 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         request.addParameter("partNumber", Integer.toString(copyPartRequest.getPartNumber()));
 
         /*
-         * We can't send the Content-Length header if the user specified it,
-         * otherwise it messes up the HTTP connection when the remote server
-         * thinks there's more data to pull.
+         * We can't send a non-zero length Content-Length header if the user
+         * specified it, otherwise it messes up the HTTP connection when the
+         * remote server thinks there's more data to pull.
          */
-        request.getHeaders().remove(Headers.CONTENT_LENGTH);
-
+        setZeroContentLength(request);
         CopyObjectResultHandler copyObjectResultHandler = null;
         try {
             @SuppressWarnings("unchecked")
@@ -2565,7 +2607,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
         // Be careful that we don't send the object's total size as the content
         // length for the InitiateMultipartUpload request.
-        request.getHeaders().remove(Headers.CONTENT_LENGTH);
+        setZeroContentLength(request);
         // Set the request content to be empty (but not null) to force the runtime to pass
         // any query params in the query string and not the request body, to keep S3 happy.
         request.setContent(new ByteArrayInputStream(new byte[0]));
@@ -3514,12 +3556,11 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
              * Content-Type header before the request is sent if one isn't set,
              * so we have to set something here otherwise the request will fail.
              */
-            if (request.getHeaders().get("Content-Type") == null) {
-                request.addHeader("Content-Type",
-                        "application/x-www-form-urlencoded; charset=utf-8");
+            if (!request.getHeaders().containsKey(Headers.CONTENT_TYPE)) {
+                request.addHeader(Headers.CONTENT_TYPE,
+                    "application/x-www-form-urlencoded; charset=utf-8");
             }
-            AWSCredentials credentials = awsCredentialsProvider
-                    .getCredentials();
+            AWSCredentials credentials = awsCredentialsProvider.getCredentials();
             if (originalRequest.getRequestCredentials() != null) {
                 credentials = originalRequest.getRequestCredentials();
             }
@@ -3528,9 +3569,115 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             response = client.execute(request, responseHandler,
                     errorResponseHandler, executionContext);
             return response.getAwsResponse();
-         } finally {
+        } finally {
             endClientExecution(awsRequestMetrics, request, response);
         }
    }
 
+    /* (non-Javadoc)
+     * @see com.amazonaws.services.s3.AmazonS3#enableRequesterPays(java.lang.String)
+     */
+    @Override
+    public void enableRequesterPays(String bucketName) {
+        RequestPaymentConfiguration configuration = new RequestPaymentConfiguration(
+                Payer.Requester);
+
+        setBucketRequestPayment(new SetRequestPaymentConfigurationRequest(
+                bucketName, configuration));
+    }
+
+    /* (non-Javadoc)
+     * @see com.amazonaws.services.s3.AmazonS3#disableRequesterPays(java.lang.String)
+     */
+    @Override
+    public void disableRequesterPays(String bucketName) {
+        RequestPaymentConfiguration configuration = new RequestPaymentConfiguration(
+                Payer.BucketOwner);
+
+        setBucketRequestPayment(new SetRequestPaymentConfigurationRequest(
+                bucketName, configuration));
+    }
+
+    /* (non-Javadoc)
+     * @see com.amazonaws.services.s3.AmazonS3#isRequesterPaysEnabled(java.lang.String)
+     */
+    @Override
+    public boolean isRequesterPaysEnabled(String bucketName) {
+        RequestPaymentConfiguration configuration = getBucketRequestPayment(new GetRequestPaymentConfigurationRequest(
+                bucketName));
+        return (configuration.getPayer() == Payer.Requester);
+    }
+
+    /**
+     * Sets the request payment configuration for a given Amazon S3 bucket.
+     * This operation can be done only by the owner of the Amazon S3 bucket.
+     * <p>
+     * When the request payment configuration for a Amazon S3 bucket is set to
+     * <code>Requester</code>, the requester instead of the bucket owner pays
+     * the cost of the request and the data download from the bucket. The bucket
+     * owner always pays the cost of storing data.
+     */
+    private void setBucketRequestPayment(
+            SetRequestPaymentConfigurationRequest setRequestPaymentConfigurationRequest) {
+
+        String bucketName = setRequestPaymentConfigurationRequest
+                .getBucketName();
+        RequestPaymentConfiguration configuration = setRequestPaymentConfigurationRequest
+                .getConfiguration();
+
+        assertParameterNotNull(bucketName,
+                "The bucket name parameter must be specified while setting the Requester Pays.");
+
+        assertParameterNotNull(
+                configuration,
+                "The request payment configuration parameter must be specified when setting the Requester Pays.");
+
+        Request<SetRequestPaymentConfigurationRequest> request = createRequest(
+                bucketName, null, setRequestPaymentConfigurationRequest,
+                HttpMethodName.PUT);
+        request.addParameter("requestPayment", null);
+        request.addHeader("Content-Type", "application/xml");
+
+        byte[] bytes = requestPaymentConfigurationXmlFactory
+                .convertToXmlByteArray(configuration);
+        request.setContent(new ByteArrayInputStream(bytes));
+
+        invoke(request, voidResponseHandler, bucketName, null);
+    }
+
+    /**
+     * Retrieves the request payment configuration for a given Amazon S3 bucket.
+     * <p>
+     * When the request payment configuration for a Amazon S3 bucket is
+     * <code>Requester</code>, the requester instead of the bucket owner pays
+     * the cost of the request and the data download from the bucket. The bucket
+     * owner always pays the cost of storing data.
+     */
+    private RequestPaymentConfiguration getBucketRequestPayment(
+            GetRequestPaymentConfigurationRequest getRequestPaymentConfigurationRequest) {
+
+        String bucketName = getRequestPaymentConfigurationRequest
+                .getBucketName();
+
+        assertParameterNotNull(
+                bucketName,
+                "The bucket name parameter must be specified while getting the Request Payment Configuration.");
+
+        Request<GetRequestPaymentConfigurationRequest> request = createRequest(
+                bucketName, null, getRequestPaymentConfigurationRequest,
+                HttpMethodName.GET);
+        request.addParameter("requestPayment", null);
+        request.addHeader("Content-Type", "application/xml");
+
+        return invoke(request,
+                new Unmarshallers.RequestPaymentConfigurationUnmarshaller(),
+                bucketName, null);
+
+    }
+
+    private void setZeroContentLength(Request<?> req) {
+        // https://github.com/aws/aws-sdk-java/pull/215
+        // http://aws.amazon.com/articles/1109#14
+        req.addHeader(Headers.CONTENT_LENGTH, String.valueOf(0));
+   }
 }

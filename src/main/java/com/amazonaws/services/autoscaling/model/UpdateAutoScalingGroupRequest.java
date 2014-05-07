@@ -58,7 +58,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      */
     private String autoScalingGroupName;
 
@@ -67,7 +67,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      */
     private String launchConfigurationName;
 
@@ -110,14 +110,16 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      */
     private String healthCheckType;
 
     /**
      * The length of time that Auto Scaling waits before checking an
-     * instance's health status. The grace period begins when an instance
-     * comes into service.
+     * instance's health status. The grace period begins when the instance
+     * passes System Status and the Instance Status checks from Amazon EC2.
+     * For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeInstanceStatus.html">DescribeInstanceStatus</a>.
      */
     private Integer healthCheckGracePeriod;
 
@@ -129,7 +131,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      */
     private String placementGroup;
 
@@ -147,7 +149,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      */
     private String vPCZoneIdentifier;
 
@@ -167,7 +169,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @return The name of the Auto Scaling group.
      */
@@ -180,7 +182,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param autoScalingGroupName The name of the Auto Scaling group.
      */
@@ -195,7 +197,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param autoScalingGroupName The name of the Auto Scaling group.
      *
@@ -212,7 +214,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @return The name of the launch configuration.
      */
@@ -225,7 +227,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param launchConfigurationName The name of the launch configuration.
      */
@@ -240,7 +242,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param launchConfigurationName The name of the launch configuration.
      *
@@ -495,7 +497,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @return The type of health check for the instances in the Auto Scaling group.
      *         The health check type can either be <code>EC2</code> for Amazon EC2 or
@@ -512,7 +514,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param healthCheckType The type of health check for the instances in the Auto Scaling group.
      *         The health check type can either be <code>EC2</code> for Amazon EC2 or
@@ -531,7 +533,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param healthCheckType The type of health check for the instances in the Auto Scaling group.
      *         The health check type can either be <code>EC2</code> for Amazon EC2 or
@@ -547,12 +549,16 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * The length of time that Auto Scaling waits before checking an
-     * instance's health status. The grace period begins when an instance
-     * comes into service.
+     * instance's health status. The grace period begins when the instance
+     * passes System Status and the Instance Status checks from Amazon EC2.
+     * For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeInstanceStatus.html">DescribeInstanceStatus</a>.
      *
      * @return The length of time that Auto Scaling waits before checking an
-     *         instance's health status. The grace period begins when an instance
-     *         comes into service.
+     *         instance's health status. The grace period begins when the instance
+     *         passes System Status and the Instance Status checks from Amazon EC2.
+     *         For more information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeInstanceStatus.html">DescribeInstanceStatus</a>.
      */
     public Integer getHealthCheckGracePeriod() {
         return healthCheckGracePeriod;
@@ -560,12 +566,16 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     
     /**
      * The length of time that Auto Scaling waits before checking an
-     * instance's health status. The grace period begins when an instance
-     * comes into service.
+     * instance's health status. The grace period begins when the instance
+     * passes System Status and the Instance Status checks from Amazon EC2.
+     * For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeInstanceStatus.html">DescribeInstanceStatus</a>.
      *
      * @param healthCheckGracePeriod The length of time that Auto Scaling waits before checking an
-     *         instance's health status. The grace period begins when an instance
-     *         comes into service.
+     *         instance's health status. The grace period begins when the instance
+     *         passes System Status and the Instance Status checks from Amazon EC2.
+     *         For more information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeInstanceStatus.html">DescribeInstanceStatus</a>.
      */
     public void setHealthCheckGracePeriod(Integer healthCheckGracePeriod) {
         this.healthCheckGracePeriod = healthCheckGracePeriod;
@@ -573,14 +583,18 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     
     /**
      * The length of time that Auto Scaling waits before checking an
-     * instance's health status. The grace period begins when an instance
-     * comes into service.
+     * instance's health status. The grace period begins when the instance
+     * passes System Status and the Instance Status checks from Amazon EC2.
+     * For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeInstanceStatus.html">DescribeInstanceStatus</a>.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
      * @param healthCheckGracePeriod The length of time that Auto Scaling waits before checking an
-     *         instance's health status. The grace period begins when an instance
-     *         comes into service.
+     *         instance's health status. The grace period begins when the instance
+     *         passes System Status and the Instance Status checks from Amazon EC2.
+     *         For more information, see <a
+     *         href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeInstanceStatus.html">DescribeInstanceStatus</a>.
      *
      * @return A reference to this updated object so that method calls can be chained 
      *         together.
@@ -598,7 +612,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @return The name of the cluster placement group, if applicable. For more
      *         information, go to <a
@@ -617,7 +631,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param placementGroup The name of the cluster placement group, if applicable. For more
      *         information, go to <a
@@ -638,7 +652,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param placementGroup The name of the cluster placement group, if applicable. For more
      *         information, go to <a
@@ -667,7 +681,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @return The subnet identifier for the Amazon VPC connection, if applicable.
      *         You can specify several subnets in a comma-separated list. <p> When
@@ -698,7 +712,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param vPCZoneIdentifier The subnet identifier for the Amazon VPC connection, if applicable.
      *         You can specify several subnets in a comma-separated list. <p> When
@@ -731,7 +745,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
-     * <b>Pattern: </b>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*<br/>
+     * <b>Pattern: </b>[&#92;u0020-&#92;uD7FF&#92;uE000-&#92;uFFFD&#92;uD800&#92;uDC00-&#92;uDBFF&#92;uDFFF\r\n\t]*<br/>
      *
      * @param vPCZoneIdentifier The subnet identifier for the Amazon VPC connection, if applicable.
      *         You can specify several subnets in a comma-separated list. <p> When
